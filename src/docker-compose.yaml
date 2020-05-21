@@ -1,6 +1,6 @@
 version: "2.0"
 services:
   backend:
-    image: backend:1.0.0-staging
+    image: scm-user
     ports: 
       - "3000:80"

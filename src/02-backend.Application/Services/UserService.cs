@@ -29,6 +29,11 @@ namespace backend.Application.Services
             return _repository.GetAll();
         }
 
+        public User GetbyLogin(string login)
+        {
+            return _repository.GetByLogin(login);
+        }
+
         public User Update(User user)
         {
             return _repository.Update(user);

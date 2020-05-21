@@ -70,16 +70,16 @@ namespace backend.Api.Controllers
             return Ok(_mapper.Map<UserModel>(_userService.Add(user)));
         }
 
-        [HttpGet("password/encrypt")]
-        public IActionResult Encrypt (string password)
-        {
-            return Ok(_hash.Encrypt(password));
-        }
+        // [HttpGet("password/encrypt")]
+        // public IActionResult Encrypt (string password)
+        // {
+        //     return Ok(_hash.Encrypt(password));
+        // }
 
-        [HttpGet("password/validade")]
-        public IActionResult Compare (string password, string hash)
-        {
-            return Ok(_hash.ValidatePassword(password, hash));
-        }
+        // [HttpGet("password/validade")]
+        // public IActionResult Compare (string password, string hash)
+        // {
+        //     return Ok(_hash.ValidatePassword(password, hash));
+        // }
     }
 }

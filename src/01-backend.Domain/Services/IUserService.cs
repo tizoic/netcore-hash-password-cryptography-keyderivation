@@ -10,5 +10,6 @@ namespace backend.Domain.Services
         void Delete(Guid id);
         User Update(User user);
         IEnumerable<User> GetAll();
+        User GetbyLogin(string login);
     }
 }
