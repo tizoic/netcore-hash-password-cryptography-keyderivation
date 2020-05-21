@@ -11,7 +11,11 @@ namespace backend.Api.Profiles
         public OrganizationProfile()
         {
             _hash = new HashConfiguration();
-            CreateMap<UserModel, User>();
+            
+            CreateMap<UserModel, User>()       
+                .AfterMap((model, entity)=>{
+                    entity.Password = _hash.Encrypt(model.Password);
+                });
             CreateMap<UserCreateModel, User>()
                 .AfterMap((model, entity)=>{
                     entity.Password = _hash.Encrypt(model.Password);
