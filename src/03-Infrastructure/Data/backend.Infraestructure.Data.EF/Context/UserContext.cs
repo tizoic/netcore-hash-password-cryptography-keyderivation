@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Infraestructure.Data.EF.Context
 {
-    public class PersonContext : DbContext
+    public class UserContext : DbContext
     {
-        public PersonContext(DbContextOptions options) : base(options)
+        public UserContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Person> Person { get; set; }        
+        public DbSet<User> User { get; set; }        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new PersonMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
     }   
 }

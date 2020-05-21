@@ -6,17 +6,17 @@ using backend.Domain.Services;
 
 namespace backend.Application.Services
 {
-    public class PersonService : IPersonService
+    public class UserService : IUserService
     {
-        private readonly IPersonRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public PersonService(IPersonRepository repository)
+        public UserService(IUserRepository repository)
         {
             _repository = repository;
         }
-        public Person Add(Person person)
+        public User Add(User user)
         {
-            return _repository.Add(person);
+            return _repository.Add(user);
         }
 
         public void Delete(Guid id)
@@ -24,14 +24,14 @@ namespace backend.Application.Services
             _repository.Delete(id);
         }
 
-        public IEnumerable<Person> GetAll()
+        public IEnumerable<User> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public Person Update(Person person)
+        public User Update(User user)
         {
-            return _repository.Update(person);
+            return _repository.Update(user);
         }
     }
 }

@@ -8,13 +8,13 @@ namespace backend.Infraestructure.Data.EF.Base
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly PersonContext _personContext;
+        protected readonly UserContext _userContext;
         protected readonly DbSet<T> dbSet;
 
-        public Repository(PersonContext personContext)
+        public Repository(UserContext userContext)
         {
-            _personContext = personContext;
-            dbSet = _personContext.Set<T>();
+            _userContext = userContext;
+            dbSet = _userContext.Set<T>();
         }
 
         public T Add(T entity)
@@ -33,7 +33,7 @@ namespace backend.Infraestructure.Data.EF.Base
 
         private void Save()
         {
-            _personContext.SaveChanges();
+            _userContext.SaveChanges();
         }
 
         public T Update(T entity)

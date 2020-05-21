@@ -4,11 +4,11 @@ using backend.Domain.Entities;
 
 namespace backend.Domain.Services
 {
-    public interface IPersonService
+    public interface IUserService
     {
-        Person Add(Person person);
+        User Add(User user);
         void Delete(Guid id);
-        Person Update(Person person);
-        IEnumerable<Person> GetAll();
+        User Update(User user);
+        IEnumerable<User> GetAll();
     }
 }

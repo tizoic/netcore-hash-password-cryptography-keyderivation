@@ -6,9 +6,9 @@ using backend.Infraestructure.Data.EF.Context;
 
 namespace backend.Infraestructure.Data.EF.Repositories
 {
-    public class PersonRepository : Repository<Person>, IPersonRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
-        public PersonRepository(PersonContext personContext) : base(personContext)
+        public UserRepository(UserContext userContext) : base(userContext)
         {
         }
     }

@@ -12,11 +12,11 @@ namespace backend.Infraestructure.IoC
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             // Repositories
-            services.AddScoped<PersonContext>();
-            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<UserContext>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // Services
-            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

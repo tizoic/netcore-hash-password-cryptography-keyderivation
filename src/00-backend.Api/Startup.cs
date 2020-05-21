@@ -27,7 +27,7 @@ namespace backend.Api
         {
             services.AddControllers();
 
-            services.AddDbContext<PersonContext>(opts => opts.UseInMemoryDatabase("PersonDB"));
+            services.AddDbContext<UserContext>(opts => opts.UseInMemoryDatabase("UserDB"));
 
             services.RegisterServices();
 

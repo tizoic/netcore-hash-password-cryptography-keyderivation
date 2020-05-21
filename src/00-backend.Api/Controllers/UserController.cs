@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using backend.Api.Configurations;
 using backend.Api.Models;
 using backend.Api.Profiles;
 using backend.Domain.Entities;
@@ -12,16 +13,17 @@ namespace backend.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PersonController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly ILogger<PersonController> _logger;
-        private readonly IPersonService _personService;
+        private readonly ILogger<UserController> _logger;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        protected readonly HashConfiguration _hash;
 
-        public PersonController(ILogger<PersonController> logger, IPersonService personService)
+        public UserController(ILogger<UserController> logger, IUserService userService)
         {
             _logger = logger;
-            _personService = personService;
+            _userService = userService;
 
             var coniguration = new MapperConfiguration(cfg=> {
                 cfg.AddProfile<OrganizationProfile>();
@@ -29,41 +31,55 @@ namespace backend.Api.Controllers
 
             _mapper = coniguration.CreateMapper();
 
+            _hash = new HashConfiguration();
+
         }
 
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_mapper.Map<IEnumerable<PersonModel>>(_personService.GetAll()));
+            return Ok(_mapper.Map<IEnumerable<UserModel>>(_userService.GetAll()));
         }
 
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
         [HttpDelete("{id}")]
         public IActionResult DeteleById(Guid id)
         {
-            _personService.Delete(id);
+            _userService.Delete(id);
             return Ok();
         }
 
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
         [HttpPut()]
-        public IActionResult Put([FromBody] PersonModel personModel)
+        public IActionResult Put([FromBody] UserModel userModel)
         {
             var coniguration = new MapperConfiguration(cfg=> {
-                cfg.CreateMap<PersonModel, Person>();
+                cfg.CreateMap<UserModel, User>();
             });
-            var person = _mapper.Map<Person>(personModel);
-            return Ok(_mapper.Map<PersonModel>(_personService.Update(person)));
+            var user = _mapper.Map<User>(userModel);
+            return Ok(_mapper.Map<UserModel>(_userService.Update(user)));
         }
         
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         [HttpPost()]
-        public IActionResult Post([FromBody] PersonCreateModel personModel)
+        public IActionResult Post([FromBody] UserCreateModel userCreateModel)
         {
             
-            var person = _mapper.Map<Person>(personModel);
-            return Ok(_mapper.Map<PersonModel>(_personService.Add(person)));
+            var user = _mapper.Map<User>(userCreateModel);
+            return Ok(_mapper.Map<UserModel>(_userService.Add(user)));
+        }
+
+        [HttpGet("password/encrypt")]
+        public IActionResult Encrypt (string password)
+        {
+            return Ok(_hash.Encrypt(password));
+        }
+
+        [HttpGet("password/validade")]
+        public IActionResult Compare (string password, string hash)
+        {
+            return Ok(_hash.ValidatePassword(password, hash));
         }
     }
 }

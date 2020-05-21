@@ -8,9 +8,9 @@ namespace backend.Api.Profiles
     {
         public OrganizationProfile()
         {
-            CreateMap<PersonModel, Person>();
-            CreateMap<PersonCreateModel, Person>();
-            CreateMap<Person, PersonModel>();
+            CreateMap<UserModel, User>();
+            CreateMap<UserCreateModel, User>();
+            CreateMap<User, UserModel>();
         }   
     }
 }
