@@ -35,9 +35,10 @@ namespace backend.Api.Configurations
         public bool ValidatePassword(string password, string passwordHash)
         {
             var split = passwordHash.Split(':');
-            var iterations = Int32.Parse(split[2]);
-            var salt = Convert.FromBase64String(split[1]);
+            
             var hash = Convert.FromBase64String(split[0]);
+            var salt = Convert.FromBase64String(split[1]);
+            var iterations = Int32.Parse(split[2]);
 
             var newHash = GetPbkdf2Bytes(password, salt, iterations, hash.Length);
 

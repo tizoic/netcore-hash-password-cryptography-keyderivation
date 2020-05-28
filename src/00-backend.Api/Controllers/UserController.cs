@@ -69,17 +69,5 @@ namespace backend.Api.Controllers
             var user = _mapper.Map<User>(userCreateModel);
             return Ok(_mapper.Map<UserModel>(_userService.Add(user)));
         }
-
-        // [HttpGet("password/encrypt")]
-        // public IActionResult Encrypt (string password)
-        // {
-        //     return Ok(_hash.Encrypt(password));
-        // }
-
-        // [HttpGet("password/validade")]
-        // public IActionResult Compare (string password, string hash)
-        // {
-        //     return Ok(_hash.ValidatePassword(password, hash));
-        // }
     }
 }
